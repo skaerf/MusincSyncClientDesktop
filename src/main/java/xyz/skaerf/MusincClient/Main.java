@@ -6,12 +6,6 @@ import org.json.simple.parser.ParseException;
 import xyz.skaerf.MusincClient.GUIs.LoginGUI;
 import xyz.skaerf.MusincClient.GUIs.MainGUI;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.*;
 import java.net.Socket;
 
@@ -81,6 +75,22 @@ public class Main {
             System.out.println("username is still null");
             loginGUI.startFrame();
         }
+
+    }
+
+    public static String makeRequest(String request) {
+        writer.println(request);
+        try {
+            String response = reader.readLine();
+            while (response.equals("")) {
+                response = reader.readLine();
+            }
+            return response;
+        }
+        catch (IOException e) {
+            System.out.println("Could not read response from makeRequest");
+        }
+        return null;
     }
 
     public static void logInRequest(String username, String pass) {
@@ -131,222 +141,4 @@ public class Main {
         }
     }
 
-    public static void initialiseGUI() {
-        final String[] usernameFieldText = {"Username"};
-
-        JFrame frame = new JFrame("Musinc");
-        frame.setSize(600, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JLabel label = new JLabel("Musinc");
-        label.setFont(new Font("Arial", Font.BOLD, 24));
-        label.setForeground(Color.RED);
-        label.setHorizontalAlignment(JLabel.CENTER);
-        label.setVerticalAlignment(JLabel.TOP);
-        label.setBounds(0, 65, frame.getWidth(), 30);
-        frame.add(label);
-
-        JTextField usernameField = new JTextField(usernameFieldText[0]);
-        usernameField.setBounds(100, 125, 300, 30);
-        frame.add(usernameField);
-
-        JTextField passwordField = new JTextField("Password");
-        passwordField.setBounds(100, 175, 300, 30);
-        frame.add(passwordField);
-
-        JButton loginButton = new JButton("Log In");
-        loginButton.setBounds(100, 225, 300, 30);
-        frame.add(loginButton);
-
-        JLabel createAccountLabel = new JLabel("Create Account");
-        createAccountLabel.setForeground(Color.BLUE);
-        createAccountLabel.setHorizontalAlignment(JLabel.CENTER);
-        createAccountLabel.setVerticalAlignment(JLabel.TOP);
-        createAccountLabel.setBounds(0, 275, frame.getWidth(), 30);
-        frame.add(createAccountLabel);
-
-        frame.setLayout(null);
-        frame.setVisible(true);
-
-        // CREATE ACCOUNT MENU
-
-        JTextField setEmailField = new JTextField("Email");
-        setEmailField.setBounds(50, 175, 100, 30);
-
-        JTextField createPassField = new JTextField("Password");
-        createPassField.setBounds(50, 175, 100, 30);
-
-        JTextField confPassField = new JTextField("Confirm Password");
-        confPassField.setBounds(50, 225, 100, 30);
-
-        JTextField setFirstNameField = new JTextField("First Name");
-        setEmailField.setBounds(50, 275, 100, 30);
-
-        JTextField setLastNameField = new JTextField("Last Name");
-        createPassField.setBounds(50, 325, 150, 30);
-
-        usernameField.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                usernameField.setText("");
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (usernameField.getText().isEmpty()) {
-                    usernameField.setText(usernameFieldText[0]);
-                }
-            }
-        });
-
-        passwordField.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                passwordField.setText("");
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (passwordField.getText().isEmpty()) {
-                    passwordField.setText("Password");
-                }
-            }
-        });
-
-        setEmailField.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                setEmailField.setText("");
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (setEmailField.getText().isEmpty()) {
-                    setEmailField.setText("Email");
-                }
-            }
-        });
-
-        createPassField.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                createPassField.setText("");
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (createPassField.getText().isEmpty()) {
-                    createPassField.setText("Password");
-                }
-            }
-        });
-
-        confPassField.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                confPassField.setText("");
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (confPassField.getText().isEmpty()) {
-                    confPassField.setText("Confirm Password");
-                }
-            }
-        });
-
-        setFirstNameField.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                setFirstNameField.setText("");
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (setFirstNameField.getText().isEmpty()) {
-                    setFirstNameField.setText("First Name");
-                }
-            }
-        });
-
-        setLastNameField.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                setLastNameField.setText("");
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (setLastNameField.getText().isEmpty()) {
-                    setLastNameField.setText("Last Name");
-                }
-            }
-        });
-
-        createAccountLabel.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("help");
-                if (isLogIn) {
-                    // show new display entirely - change this
-                    frame.getContentPane().removeAll();
-                    frame.add(label);
-                    frame.add(setEmailField);
-                    frame.add(createPassField);
-                    frame.add(confPassField);
-                    frame.add(setFirstNameField);
-                    frame.add(setLastNameField);
-                    frame.add(createAccountLabel);
-                    frame.validate();
-                    frame.repaint();
-                    isLogIn = false;
-                }
-                else {
-                    frame.removeAll();
-                    frame.add(label);
-                    frame.add(usernameField);
-                    frame.add(passwordField);
-                    frame.add(loginButton);
-                    frame.add(createAccountLabel);
-                    frame.repaint();
-                    frame.revalidate();
-                    usernameFieldText[0] = "Username";
-                    usernameField.setText(usernameFieldText[0]);
-                    isLogIn = true;
-                }
-            }
-            @Override
-            public void mousePressed(MouseEvent e) {}
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-            @Override
-            public void mouseEntered(MouseEvent e) {}
-            @Override
-            public void mouseExited(MouseEvent e) {}
-        });
-
-        loginButton.addActionListener(e -> {
-            if (loginButton.getText().equalsIgnoreCase("Log In")) {
-                if ((usernameField.getText() != null && !usernameField.getText().equalsIgnoreCase("Username")) && (passwordField.getText() != null && !passwordField.getText().equalsIgnoreCase("Password"))) {
-                    if (isLoggedIn) {
-                        System.out.println("Welcome "+firstName+" "+lastName+"!");
-                        // change ui
-                        frame.removeAll();
-                        frame.getContentPane().add(new JTextArea(firstName+" "+lastName), BorderLayout.CENTER);
-                        frame.getContentPane().add(new JTextArea(email), BorderLayout.AFTER_LINE_ENDS);
-                        frame.repaint();
-                    }
-                    else {
-                        System.out.println("Incorrect credentials");
-                    }
-                }
-                else {
-                    System.out.println("Input username and password");
-                }
-            }
-            else {
-                frame.removeAll();
-            }
-        });
-    }
 }

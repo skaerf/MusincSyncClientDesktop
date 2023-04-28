@@ -21,6 +21,7 @@ public class BaseGUI {
         int[] primaryRes = new int[]{(int) screenSize.getWidth(), (int) screenSize.getHeight()};
         frame.setLayout(new BorderLayout());
         if (this.isMain) {
+            frame.setMinimumSize(new Dimension(primaryRes[0], primaryRes[1]));
             frame.setSize(primaryRes[0], primaryRes[1]);
         }
         else {

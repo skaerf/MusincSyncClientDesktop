@@ -5,24 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae3311fb-d44c-4c40-bc4f-d9d51484e385" name="Changes" comment="basic login functionality and opening of main gui">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/BaseGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/LoginGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/MainGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/RequestArgs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/UpdateListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/BaseGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/BaseGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/MainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/MainGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/RequestArgs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/RequestArgs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,12 +64,18 @@
   "keyToString": {
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/lawre/IdeaProjects/MusincServer",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.general"
+    "settings.editor.selected.configurable": "preferences.general",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -129,6 +123,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <recent_temporary>
@@ -153,8 +148,17 @@
       <workItem from="1680183621226" duration="3068000" />
       <workItem from="1681901550562" duration="1415000" />
       <workItem from="1681994618738" duration="11338000" />
-      <workItem from="1682071777502" duration="11125000" />
+      <workItem from="1682071777502" duration="11320000" />
+      <workItem from="1682414394193" duration="17411000" />
     </task>
+    <task id="LOCAL-00001" summary="basic login functionality and opening of main gui">
+      <created>1682114988430</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682114988430</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
