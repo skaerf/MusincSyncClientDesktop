@@ -54,7 +54,7 @@ public class Main {
         catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
-        hostname = "localhost";
+        hostname = "172.20.10.2";
         port = 1905;
         LoginGUI loginGUI = new LoginGUI();
         mainGUI = new MainGUI();
@@ -89,6 +89,7 @@ public class Main {
         }
         catch (IOException e) {
             System.out.println("Could not read response from makeRequest");
+            System.exit(0);
         }
         return null;
     }
