@@ -11,7 +11,9 @@ public class PassManager {
      * the server at any point.
      * Unfortunately, this system means that one password has one hash, e.g. 'password' will always result in the same hash.
      * It is however not stored in this manner; I am simply unable to confirm that the password is correct if the password
-     * is transmitted to the server with a salt already included.
+     * is transmitted to the server with a salt already included. This is, of course, unless I had another salt that was
+     * stored on the client end, however I would prefer to keep potentially sensitive data on this end to a minimum.
+     * Additionally, a salt that was stored in plaintext in a file would not help anything security-wise.
      * @param password the raw password to be hashed
      * @return the hashed password to be transmitted
      */
