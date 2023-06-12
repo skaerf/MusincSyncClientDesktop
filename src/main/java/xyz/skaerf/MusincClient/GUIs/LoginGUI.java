@@ -86,8 +86,8 @@ public class LoginGUI {
         logIn.addActionListener(e -> {
             errorLabel.setVisible(false);
             base.getFrame().repaint();
-            if (!user.getText().isEmpty()) {
-                Main.logInRequest(user.getText(), Arrays.toString(pass.getPassword()));
+            if (!user.getText().isEmpty() && pass.getPassword().length != 0) {
+                Main.logInRequest(user.getText(), Arrays.toString(pass.getPassword()), false);
                 if (Main.isLoggedIn) {
                     base.closeFrame();
                     System.out.println("Successfully logged in");

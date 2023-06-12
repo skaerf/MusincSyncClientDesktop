@@ -14,6 +14,7 @@ public class Main {
     static File configFile;
     static JSONObject configJson;
     static JSONObject loginData;
+    public static String spotifyLoginCode;
     public static MainGUI mainGUI;
     static String hostname;
     static int port;
@@ -23,6 +24,8 @@ public class Main {
     public static String firstName;
     public static String lastName;
     static String email;
+
+    static String keepalive;
 
     static OutputStream output;
     static PrintWriter writer;
@@ -49,19 +52,20 @@ public class Main {
             FileReader reader = new FileReader("data.json");
             Object obj = parser.parse(reader);
             configJson = (JSONObject) obj;
-            username = (String) configJson.get("username");
+            keepalive = (String) configJson.get("keepalive");
+            if (configJson.get("spotifyLogin") != null) spotifyLoginCode = (String) configJson.get("spotifyLogin");
         }
         catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
-        hostname = "172.20.10.2";
+        hostname = "localhost";
         port = 1905;
         LoginGUI loginGUI = new LoginGUI();
         mainGUI = new MainGUI();
 
-        if (username != null) {
-            System.out.println("Username was found in configuration file, auto logging in");
-            logInRequest(username, null); // TODO add pass
+        if (keepalive != null) {
+            System.out.println("Keepalive was found in configuration file, auto logging in");
+            logInRequest(keepalive, null, true);
             if (isLoggedIn) {
                 System.out.println("Successfully logged in with saved credentials");
                 mainGUI.startFrame();
@@ -72,7 +76,7 @@ public class Main {
             }
         }
         else {
-            System.out.println("username is still null");
+            System.out.println("Keepalive not found in config");
             loginGUI.startFrame();
         }
 
@@ -94,7 +98,7 @@ public class Main {
         return null;
     }
 
-    public static void logInRequest(String username, String pass) {
+    public static void logInRequest(String username, String pass, boolean isKeepAlive) {
         Main.username = username;
         try {
             socket = new Socket(hostname, port);
@@ -111,7 +115,12 @@ public class Main {
         catch (IOException e) {
             e.printStackTrace();
         }
-        writer.println(RequestArgs.LOG_IN+username+"\n"); // username+":!:"+pass+"\n" - do not transmit unencrypted password obviously
+        if (isKeepAlive) {
+            writer.println(RequestArgs.KEEPALIVE+keepalive+"\n");
+        }
+        else {
+            writer.println(RequestArgs.LOG_IN + username + ":!:" + PassManager.hashPassword(pass) + "\n"); // username+":!:"+pass+"\n" - do not transmit unencrypted password obviously
+        }
         System.out.println("Transmitted login request");
         String response;
         try {
@@ -123,11 +132,16 @@ public class Main {
                     }
                     else {
                         Main.username = vars[0];
-                        loginData.put("username", vars[0]); // TODO what?
                     }
                     firstName = vars[1];
                     lastName = vars[2];
                     email = vars[3];
+                    if (!isKeepAlive) {
+                        keepalive = vars[4];
+                        System.out.println("New keepalive saved as old appeared to be invalid");
+                        System.out.println(keepalive);
+                        // TODO save new keepalive
+                    }
                     isLoggedIn = true;
                     break;
                 }

@@ -9,14 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae3311fb-d44c-4c40-bc4f-d9d51484e385" name="Changes" comment="latest for testing">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/MusincClient_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
+    <list default="true" id="ae3311fb-d44c-4c40-bc4f-d9d51484e385" name="Changes" comment="MainGUI album art and (half-done) menu bar">
+      <change afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/PassManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/AlbumArtUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/AlbumArtUpdater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/LoginGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/LoginGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/MainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/MainGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/UpdateListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/AlbumArtUpdater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/RequestArgs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/RequestArgs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,25 +68,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/lawre/IdeaProjects/MusincServer",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.general",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lawre/IdeaProjects/MusincServer&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="xyz.skaerf.MusincClient" />
@@ -160,6 +161,14 @@
       <workItem from="1682414394193" duration="17411000" />
       <workItem from="1682686109849" duration="5976000" />
       <workItem from="1683208176496" duration="3388000" />
+      <workItem from="1683286453027" duration="2210000" />
+      <workItem from="1683814354173" duration="2486000" />
+      <workItem from="1683885196262" duration="627000" />
+      <workItem from="1683895637716" duration="3240000" />
+      <workItem from="1684419071239" duration="2328000" />
+      <workItem from="1684502660946" duration="141000" />
+      <workItem from="1685022439355" duration="2531000" />
+      <workItem from="1686572985011" duration="11851000" />
     </task>
     <task id="LOCAL-00001" summary="basic login functionality and opening of main gui">
       <created>1682114988430</created>
@@ -175,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682686269525</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="MainGUI album art and (half-done) menu bar">
+      <created>1683319093705</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1683319093705</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,6 +211,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="basic login functionality and opening of main gui" />
     <MESSAGE value="latest for testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="latest for testing" />
+    <MESSAGE value="MainGUI album art and (half-done) menu bar" />
+    <option name="LAST_COMMIT_MESSAGE" value="MainGUI album art and (half-done) menu bar" />
   </component>
 </project>
