@@ -139,8 +139,10 @@ public class Main {
                     if (!isKeepAlive) {
                         keepalive = vars[4];
                         System.out.println("New keepalive saved as old appeared to be invalid");
-                        System.out.println(keepalive);
-                        // TODO save new keepalive
+                        FileWriter fileWriter = new FileWriter(configFile);
+                        configJson.put("keepalive", keepalive);
+                        fileWriter.write(configJson.toJSONString());
+                        fileWriter.close();
                     }
                     isLoggedIn = true;
                     break;
