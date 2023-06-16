@@ -11,10 +11,9 @@ import java.net.Socket;
 
 public class Main {
 
-    static File configFile;
-    static JSONObject configJson;
+    public static File configFile;
+    public static JSONObject configJson;
     static JSONObject loginData;
-    public static String spotifyLoginCode;
     public static MainGUI mainGUI;
     static String hostname;
     static int port;
@@ -26,6 +25,7 @@ public class Main {
     static String email;
 
     static String keepalive;
+    static String refreshToken;
 
     static OutputStream output;
     static PrintWriter writer;
@@ -33,6 +33,7 @@ public class Main {
 
     static boolean isLogIn = true;
     public static boolean isLoggedIn = false;
+    public static Thread albumArtUpdater;
 
 
     public static void main(String[] args) {
@@ -53,7 +54,7 @@ public class Main {
             Object obj = parser.parse(reader);
             configJson = (JSONObject) obj;
             keepalive = (String) configJson.get("keepalive");
-            if (configJson.get("spotifyLogin") != null) spotifyLoginCode = (String) configJson.get("spotifyLogin");
+            refreshToken = (String) configJson.get("refreshToken");
         }
         catch (IOException | ParseException e) {
             throw new RuntimeException(e);
@@ -69,6 +70,15 @@ public class Main {
             if (isLoggedIn) {
                 System.out.println("Successfully logged in with saved credentials");
                 mainGUI.startFrame();
+                if (refreshToken != null) {
+                    System.out.println("Spotify refresh token found in configuration file, auto-connecting");
+                    if (autoLinkSpotify(refreshToken)) {
+                        System.out.println("Successfully re-authenticated using refresh token");
+                        System.out.println("Starting album cover updater thread");
+                        albumArtUpdater = new Thread(new AlbumArtUpdater(mainGUI));
+                        albumArtUpdater.start();
+                    }
+                }
             }
             else {
                 System.out.println("Saved details were not accepted by server, opening log in window");
@@ -156,6 +166,17 @@ public class Main {
         catch (IOException e) {
             System.out.println("Connection was reset by server.");
         }
+    }
+
+    public static boolean autoLinkSpotify(String refreshToken) {
+        String response = Main.makeRequest(RequestArgs.REAUTHENTICATE_SPOTIFY_ACCOUNT+refreshToken);
+        if (response != null) {
+            String arg = response.split(";")[0]+";";
+            if (arg.equalsIgnoreCase(RequestArgs.ACCEPTED)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -8,12 +8,14 @@ import xyz.skaerf.MusincClient.RequestArgs;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Arrays;
 
 public class MainGUI {
 
@@ -22,7 +24,7 @@ public class MainGUI {
     private JPanel menuBarPanel;
     private JPanel playerPanel;
     private JLabel albumCover;
-    private String authToken;
+    private String refreshToken;
 
     public MainGUI() {
         base = new BaseGUI(true);
@@ -130,19 +132,27 @@ public class MainGUI {
         if (response != null) {
             arg = response.split(";")[0]+";";
             if (arg.equalsIgnoreCase(RequestArgs.ACCEPTED)) {
-                this.authToken = authCode[0];
                 System.out.println("Successfully linked Spotify account");
                 try {
                     data = response.split(";")[1].split(":!:");
-                    albumCoverPath = data[0];
+                    this.refreshToken = data[0];
+                    System.out.println(Arrays.toString(data));
+                    FileWriter fileWriter = new FileWriter(Main.configFile);
+                    Main.configJson.put("refreshToken", this.refreshToken);
+                    fileWriter.write(Main.configJson.toJSONString());
+                    fileWriter.close();
+                    albumCoverPath = data[1];
                     this.refreshPlayingInfo(null, null, null, null);
                 }
                 catch (NullPointerException e) {
                     System.out.println("User not currently playing any music");
                 }
+                catch (IOException e) {
+                    System.out.println("Could not write refresh token to file");
+                }
                 System.out.println("Starting album cover updater thread");
-                Thread albumArtUpdater = new Thread(new AlbumArtUpdater(this));
-                albumArtUpdater.start();
+                Main.albumArtUpdater = new Thread(new AlbumArtUpdater(this));
+                Main.albumArtUpdater.start();
             }
             else {
                 System.out.println("Failed to link Spotify account");
@@ -150,8 +160,8 @@ public class MainGUI {
         }
     }
 
-    public String getAuthToken() {
-        return this.authToken;
+    public String getRefreshToken() {
+        return this.refreshToken;
     }
 
     public void refreshPlayingInfo(String albumCoverPath, String songTitle, String songArtist, Long timestamp) {
