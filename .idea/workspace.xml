@@ -9,10 +9,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae3311fb-d44c-4c40-bc4f-d9d51484e385" name="Changes" comment="keepalive saving correctly">
+    <list default="true" id="ae3311fb-d44c-4c40-bc4f-d9d51484e385" name="Changes" comment="spotify auto-login">
+      <change afterPath="$PROJECT_DIR$/lib/miglayout-core-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/miglayout-core-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/miglayout-core.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/miglayout-swing-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/miglayout-swing-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/miglayout-swing.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/JFormMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/JFormMain.jfd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/JFormMainManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/MainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/MainGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/AlbumArtUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/AlbumArtUpdater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/LoginGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/LoginGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/MainGUI.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/RequestArgs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/RequestArgs.java" afterDir="false" />
     </list>
@@ -83,7 +96,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -169,7 +182,15 @@
       <workItem from="1684502660946" duration="141000" />
       <workItem from="1685022439355" duration="2531000" />
       <workItem from="1686572985011" duration="12584000" />
-      <workItem from="1686904934294" duration="2073000" />
+      <workItem from="1686904934294" duration="2117000" />
+      <workItem from="1686909903431" duration="7480000" />
+      <workItem from="1687037468121" duration="832000" />
+      <workItem from="1687993422163" duration="80000" />
+      <workItem from="1687993695398" duration="147000" />
+      <workItem from="1688049608905" duration="283000" />
+      <workItem from="1689254141253" duration="1192000" />
+      <workItem from="1689266536033" duration="34896000" />
+      <workItem from="1689607358953" duration="605000" />
     </task>
     <task id="LOCAL-00001" summary="basic login functionality and opening of main gui">
       <created>1682114988430</created>
@@ -206,7 +227,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686840163920</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="spotify auto-login">
+      <created>1686907768193</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1686907768193</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +257,7 @@
     <MESSAGE value="MainGUI album art and (half-done) menu bar" />
     <MESSAGE value="password pre-hashing and keepalive management" />
     <MESSAGE value="keepalive saving correctly" />
-    <option name="LAST_COMMIT_MESSAGE" value="keepalive saving correctly" />
+    <MESSAGE value="spotify auto-login" />
+    <option name="LAST_COMMIT_MESSAGE" value="spotify auto-login" />
   </component>
 </project>

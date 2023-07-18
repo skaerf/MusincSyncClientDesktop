@@ -87,11 +87,10 @@ public class LoginGUI {
             errorLabel.setVisible(false);
             base.getFrame().repaint();
             if (!user.getText().isEmpty() && pass.getPassword().length != 0) {
-                Main.logInRequest(user.getText(), Arrays.toString(pass.getPassword()), false);
-                if (Main.isLoggedIn) {
+                if (Main.logInRequest(user.getText(), Arrays.toString(pass.getPassword()), false)) {
                     base.closeFrame();
                     System.out.println("Successfully logged in");
-                    Main.mainGUI.startFrame();
+                    Main.mainGUI.getMusinc().setVisible(true);
                 }
                 else {
                     errorLabel.setVisible(true);

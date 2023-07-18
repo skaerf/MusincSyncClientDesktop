@@ -1,0 +1,200 @@
+JFDML JFormDesigner: "8.1.0.0.283" Java: "17.0.6" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :::p, comp playerPanel:::p::p, space s:::p, comp sessionUsers::::347:x, space :::p}}"
+			"$verticalGroup": "par l {seq {space :p:9:p, par t {comp sessionUsers::::356:x, comp playerPanel:::::x}, space :p:12:p}}"
+		} ) {
+			name: "Musinc"
+			"title": "Musinc"
+			"$locationPolicy": 1
+			"defaultCloseOperation": 3
+			"background": new java.awt.Color( 242, 242, 242, 255 )
+			"minimumSize": new java.awt.Dimension( 500, 500 )
+			auxiliary() {
+				"JavaCodeGenerator.variableGetter": true
+			}
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :p:25:p, par c {comp albumCover::c:p:200:p, comp songInfoPanel::c:p:270:p}, space :p:26:p}}"
+				"$verticalGroup": "par l {seq t {space ::11:x, comp albumCover:::p:200:p, space s:::p, comp songInfoPanel:::p:100:p, space :p:27:p}}"
+			} ) {
+				name: "playerPanel"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "albumCover"
+					"icon": new com.jformdesigner.model.SwingIcon( 2, "FileView.fileIcon" )
+					auxiliary() {
+						"JavaCodeGenerator.variableModifiers": 9
+					}
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+					"$columnSpecs": "0, 0, 0"
+					"$rowSpecs": "0, 0, 0, 0"
+					"$hGap": 5
+					"$vGap": 5
+					"$alignTop": true
+				} ) {
+					name: "songInfoPanel"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "songArtist"
+						"text": "song artist"
+						"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+						auxiliary() {
+							"JavaCodeGenerator.variableModifiers": 9
+						}
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"hAlign": 0
+						"gridwidth": 3
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "songName"
+						"text": "song name"
+						"font": new com.jformdesigner.model.SwingDerivedFont( null, 65536, 0, false )
+						auxiliary() {
+							"JavaCodeGenerator.variableModifiers": 9
+						}
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"hAlign": 0
+						"gridy": 1
+						"gridwidth": 3
+					} )
+					add( new FormComponent( "javax.swing.JProgressBar" ) {
+						name: "progressBar"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 2
+						"gridwidth": 3
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "previousButton"
+						"text": "previous"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "previousTrack", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 3
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "playPauseButton"
+						"text": "play/pause"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "playPauseButtonClicked", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 3
+						"gridx": 1
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "nextButton"
+						"text": "next"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "nextTrack", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 2
+						"gridy": 3
+					} )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JTable" ) {
+				name: "sessionUsers"
+				auxiliary() {
+					"JavaCodeGenerator.variableModifiers": 9
+				}
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "musincMenu"
+					"text": "Musinc"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "manualRefresh"
+						"text": "Manual Refresh"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "manualRefreshRequest", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "aboutButton"
+						"text": "About Musinc"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "aboutButtonMouseClicked", true ) )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "session"
+					"text": "Sessions"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "newSession"
+						"text": "New Session.."
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "newSessionRequest", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "joinSession"
+						"text": "Join Session.."
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "accountMenu"
+					"text": "Account"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "spotify"
+						"text": "Link Spotify Account"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "spotifyAccountLink", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "deezer"
+						"text": "Link Deezer Account"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "logOut"
+						"text": "Log Out.."
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "logOut", true ) )
+					} )
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 30, 5 )
+			"size": new java.awt.Dimension( 700, 430 )
+		} )
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp label6::l:::x, seq {par l {seq l {space :p:58:p, comp label8:::p::p}, seq l {space :p:49:p, comp label7:::p::p}, comp label5::l:p:198:p}, space :0:0:x}}"
+			"$verticalGroup": "par l {seq l {space :p:40:p, comp label5:::p::p, space s:::p, comp label6:::p::p, space :::p, comp label7:::p::p, space :::p, comp label8:::p::p, space :p:24:p}}"
+		} ) {
+			name: "about"
+			"alwaysOnTop": true
+			"resizable": false
+			"defaultCloseOperation": 2
+			"title": "About"
+			"type": enum java.awt.Window$Type POPUP
+			"$sizePolicy": 1
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "          Musinc"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 10, false )
+				"foreground": new java.awt.Color( 255, 51, 51, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "           Designed and written by"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label7"
+				"text": "Lawrence Harrison"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label8"
+				"text": "Copyright 2023"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 745, 5 )
+			"size": new java.awt.Dimension( 200, 200 )
+		} )
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.GridBagLayout ) {
+			"$columnSpecs": "0"
+			"$rowSpecs": "0, 0, 0"
+			"$hGap": 5
+			"$vGap": 5
+			"$alignTop": true
+		} ) {
+			name: "dialog1"
+			"title": "Join Session"
+			"alwaysOnTop": true
+			"$sizePolicy": 1
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 745, 225 )
+			"size": new java.awt.Dimension( 200, 200 )
+		} )
+	}
+}

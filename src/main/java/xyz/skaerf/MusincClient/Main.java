@@ -3,8 +3,8 @@ package xyz.skaerf.MusincClient;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import xyz.skaerf.MusincClient.GUIs.JFormMain;
 import xyz.skaerf.MusincClient.GUIs.LoginGUI;
-import xyz.skaerf.MusincClient.GUIs.MainGUI;
 
 import java.io.*;
 import java.net.Socket;
@@ -14,7 +14,8 @@ public class Main {
     public static File configFile;
     public static JSONObject configJson;
     static JSONObject loginData;
-    public static MainGUI mainGUI;
+    public static JFormMain mainGUI;
+    public static LoginGUI loginGUI;
     static String hostname;
     static int port;
     static Socket socket;
@@ -50,7 +51,7 @@ public class Main {
         }
         JSONParser parser = new JSONParser();
         try {
-            FileReader reader = new FileReader("data.json");
+            FileReader reader = new FileReader(configFile);
             Object obj = parser.parse(reader);
             configJson = (JSONObject) obj;
             keepalive = (String) configJson.get("keepalive");
@@ -61,21 +62,21 @@ public class Main {
         }
         hostname = "localhost";
         port = 1905;
-        LoginGUI loginGUI = new LoginGUI();
-        mainGUI = new MainGUI();
+        loginGUI = new LoginGUI();
+        mainGUI = new JFormMain();
 
         if (keepalive != null) {
             System.out.println("Keepalive was found in configuration file, auto logging in");
             logInRequest(keepalive, null, true);
             if (isLoggedIn) {
                 System.out.println("Successfully logged in with saved credentials");
-                mainGUI.startFrame();
+                mainGUI.getMusinc().setVisible(true);
                 if (refreshToken != null) {
                     System.out.println("Spotify refresh token found in configuration file, auto-connecting");
                     if (autoLinkSpotify(refreshToken)) {
                         System.out.println("Successfully re-authenticated using refresh token");
                         System.out.println("Starting album cover updater thread");
-                        albumArtUpdater = new Thread(new AlbumArtUpdater(mainGUI));
+                        albumArtUpdater = new Thread(new AlbumArtUpdater());
                         albumArtUpdater.start();
                     }
                 }
@@ -90,6 +91,18 @@ public class Main {
             loginGUI.startFrame();
         }
 
+    }
+
+    public static void wipeContentsOfDataFile() {
+        try {
+            configJson = new JSONObject();
+            FileWriter fileWriter = new FileWriter(configFile);
+            fileWriter.write(configJson.toJSONString());
+            fileWriter.close();
+        }
+        catch (IOException e) {
+            System.out.println("Could not save blank JSON string to data file to reset");
+        }
     }
 
     public static String makeRequest(String request) {
@@ -108,14 +121,23 @@ public class Main {
         return null;
     }
 
-    public static void logInRequest(String username, String pass, boolean isKeepAlive) {
+    public static boolean logInRequest(String username, String pass, boolean isKeepAlive) {
+        if (socket != null && socket.isConnected()) {
+            try {
+                socket.close();
+                socket = null;
+            }
+            catch (IOException e) {
+                System.out.println("Could not close preexisting socket");
+            }
+        }
         Main.username = username;
         try {
             socket = new Socket(hostname, port);
         }
         catch (IOException e) {
             System.out.println("Connection was not accepted.");
-            return;
+            return false;
         }
         try {
             output = socket.getOutputStream();
@@ -155,17 +177,19 @@ public class Main {
                         fileWriter.close();
                     }
                     isLoggedIn = true;
-                    break;
+                    return true;
                 }
                 else if (response.startsWith(RequestArgs.DENIED)) {
                     System.out.println("Credentials were not accepted.");
-                    break;
+                    return false;
                 }
             }
         }
         catch (IOException e) {
             System.out.println("Connection was reset by server.");
+            return false;
         }
+        return false;
     }
 
     public static boolean autoLinkSpotify(String refreshToken) {

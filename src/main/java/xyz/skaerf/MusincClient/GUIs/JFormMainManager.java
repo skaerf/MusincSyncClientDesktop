@@ -8,6 +8,7 @@ import xyz.skaerf.MusincClient.RequestArgs;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -17,73 +18,39 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Arrays;
 
-public class MainGUI {
+public class JFormMainManager {
 
-    private final BaseGUI base;
-    private String albumCoverPath;
-    private JPanel menuBarPanel;
-    private JPanel playerPanel;
-    private JLabel albumCover;
-    private String refreshToken;
+    private static String refreshToken;
 
-    public MainGUI() {
-        base = new BaseGUI(true);
+    public static void refreshPlayingInfo(String icon, String songName, String songArtist, Long timestamp, Long songLength) {
+        try {
+            BufferedImage originalImage = ImageIO.read(new URL(icon));
+            int width = originalImage.getWidth();
+            int height = originalImage.getHeight();
+
+            int maxSize = 200;
+            int newWidth, newHeight;
+            if (width > height) {
+                newWidth = maxSize;
+                newHeight = (int) (height * ((double) maxSize / width));
+            }
+            else {
+                newWidth = (int) (width * ((double) maxSize / height));
+                newHeight = maxSize;
+            }
+
+            Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+            ImageIcon newIcon = new ImageIcon(scaledImage);
+            JFormMain.albumCover.setIcon(newIcon);
+            JFormMain.songName.setText(songName);
+            JFormMain.songArtist.setText(songArtist);
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void startFrame() {
-        addButtons();
-        addMenuBar();
-        base.getFrame().pack();
-        base.getFrame().setVisible(true);
-    }
-
-    private void addButtons() {
-        // add album cover label and position it in center-left of screen
-        playerPanel = new JPanel(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        albumCover = new JLabel();
-        c.gridx = 1;
-        c.gridy = 1;
-        c.anchor = GridBagConstraints.LINE_START;
-        c.weighty = 0.5;
-        c.insets = new Insets(0, 20, 0, 20);
-        albumCover.setMaximumSize(new Dimension(50, 50));
-        albumCover.setSize(new Dimension(50, 50));
-        playerPanel.add(albumCover, c);
-
-        playerPanel.setVisible(true);
-        base.getFrame().add(playerPanel);
-    }
-
-
-    private void addMenuBar() {
-        menuBarPanel = new JPanel(new GridBagLayout());
-        JMenuBar bar = new JMenuBar();
-        JMenu musincMenu = new JMenu("Musinc");
-        JMenuItem spotify = new JMenuItem("Add Spotify Account");
-        JMenuItem deezer = new JMenuItem("Add Deezer Account");
-        musincMenu.add(spotify);
-        musincMenu.add(deezer);
-        bar.add(musincMenu);
-        spotify.addActionListener(e -> this.makeSpotifyAccountRequest());
-
-        GridBagConstraints c = new GridBagConstraints();
-        c.gridx = 0;
-        c.gridy = 0;
-        c.weightx = 0.0;
-        c.insets = new Insets(10, 10, 0, 0);
-        c.anchor = GridBagConstraints.NORTHWEST;
-        JPanel barPanel = new JPanel(new GridBagLayout());
-        barPanel.add(bar);
-        barPanel.setVisible(true);
-        barPanel.setBounds(0,0, base.getFrame().getWidth(), 100);
-        barPanel.setLocation(new Point(0,0));
-        menuBarPanel.add(barPanel);
-        menuBarPanel.setVisible(true);
-        base.getFrame().add(menuBarPanel);
-    }
-
-    private void makeSpotifyAccountRequest() {
+    public static void makeSpotifyAccountRequest() {
         String response = Main.makeRequest(RequestArgs.CREATE_SPOTIFY_ACCOUNT);
         if (response != null) {
             String arg = response.split(";")[0] + ";";
@@ -106,7 +73,7 @@ public class MainGUI {
                             OutputStream outStream = webResponse.getResponseBody();
                             outStream.write(conf.getBytes());
                             outStream.close();
-                            this.sendSpotifyCode(authCode);
+                            sendSpotifyCode(authCode);
                             httpServer.stop(0);
                         });
                         httpServer.setExecutor(null);
@@ -124,8 +91,7 @@ public class MainGUI {
         }
     }
 
-
-    private void sendSpotifyCode(String[] authCode) {
+    private static void sendSpotifyCode(String[] authCode) {
         String arg;
         String[] data;
         String response = Main.makeRequest(RequestArgs.GENERAL + authCode[0]);
@@ -135,14 +101,14 @@ public class MainGUI {
                 System.out.println("Successfully linked Spotify account");
                 try {
                     data = response.split(";")[1].split(":!:");
-                    this.refreshToken = data[0];
+                    refreshToken = data[0];
                     System.out.println(Arrays.toString(data));
                     FileWriter fileWriter = new FileWriter(Main.configFile);
-                    Main.configJson.put("refreshToken", this.refreshToken);
+                    Main.configJson.put("refreshToken", refreshToken);
                     fileWriter.write(Main.configJson.toJSONString());
                     fileWriter.close();
-                    albumCoverPath = data[1];
-                    this.refreshPlayingInfo(null, null, null, null);
+                    String[] times = data[4].split("/");
+                    refreshPlayingInfo(data[1], data[2], data[3], Long.parseLong(times[0]), Long.parseLong(times[1]));
                 }
                 catch (NullPointerException e) {
                     System.out.println("User not currently playing any music");
@@ -151,7 +117,7 @@ public class MainGUI {
                     System.out.println("Could not write refresh token to file");
                 }
                 System.out.println("Starting album cover updater thread");
-                Main.albumArtUpdater = new Thread(new AlbumArtUpdater(this));
+                Main.albumArtUpdater = new Thread(new AlbumArtUpdater());
                 Main.albumArtUpdater.start();
             }
             else {
@@ -160,25 +126,11 @@ public class MainGUI {
         }
     }
 
-    public String getRefreshToken() {
-        return this.refreshToken;
+    public void addToSessionUsersTable(String columnName, String value) {
+
     }
 
-    public void refreshPlayingInfo(String albumCoverPath, String songTitle, String songArtist, Long timestamp) {
-        if (albumCoverPath == null) albumCoverPath = this.albumCoverPath;
-        try {
-            ImageIcon newIcon = new ImageIcon(ImageIO.read(new URL(albumCoverPath)));
-            if (albumCover == null) {
-                albumCover = new JLabel();
-                albumCover.setMaximumSize(new Dimension(640, 640));
-                playerPanel.add(albumCover);
-            }
-            albumCover.setIcon(newIcon);
-        }
-        catch (IOException e) {
-            System.out.println("Could not read album art link");
-        }
-        playerPanel.revalidate();
-        playerPanel.repaint();
+    public void removeFromSessionUsersTable(String columnName, String value) {
+
     }
 }
