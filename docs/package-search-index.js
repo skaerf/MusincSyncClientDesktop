@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"xyz.skaerf.MusincClient"},{"l":"xyz.skaerf.MusincClient.GUIs"}];updateSearchResults();
