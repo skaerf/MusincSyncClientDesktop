@@ -1,6 +1,7 @@
 package xyz.skaerf.MusincClient.GUIs;
 
 import com.sun.net.httpserver.HttpServer;
+import org.imgscalr.Scalr;
 import xyz.skaerf.MusincClient.AlbumArtUpdater;
 import xyz.skaerf.MusincClient.Main;
 import xyz.skaerf.MusincClient.RequestArgs;
@@ -8,6 +9,7 @@ import xyz.skaerf.MusincClient.RequestArgs;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,6 +18,7 @@ import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class JFormMainManager {
@@ -23,32 +26,69 @@ public class JFormMainManager {
     private static String refreshToken;
 
     public static void refreshPlayingInfo(String icon, String songName, String songArtist, Long timestamp, Long songLength) {
+        JFormMain.songName.setText(songName);
+        JFormMain.songArtist.setText(songArtist);
+        long secsVal = (songLength/1000)%60;
+        String pre = "";
+        if (secsVal <= 9) pre = "0";
+        JFormMain.length.setText(((songLength/1000)/60)+":"+pre+((songLength/1000)%60));
+        JFormMain.updateProgressBar(timestamp, songLength, false);
+        String response = Main.makeRequest(RequestArgs.GET_QUEUE);
+        if (response == null || (response.split(";")[0]+";").equalsIgnoreCase(RequestArgs.DENIED)) {
+            System.out.println("Request for queue information returned null, skipping");
+        }
+        else {
+            String[] songs = response.split(";")[1].split(":!:");
+            ArrayList<ArrayList<String>> list = new ArrayList<>();
+            for (String song : songs) {
+                System.out.println(song);
+                ArrayList<String> arr = new ArrayList<>();
+                String[] nameAndArtist = song.split("\\+++");
+                arr.add(nameAndArtist[0].substring(1));
+                arr.add(nameAndArtist[1].substring(0, nameAndArtist[1].length()-1));
+                list.add(arr);
+            }
+            JFormMain.updateQueuedSongs(list);
+        }
         try {
-            BufferedImage originalImage = ImageIO.read(new URL(icon));
-            int width = originalImage.getWidth();
-            int height = originalImage.getHeight();
-
-            int maxSize = 200;
-            int newWidth, newHeight;
-            if (width > height) {
-                newWidth = maxSize;
-                newHeight = (int) (height * ((double) maxSize / width));
-            }
-            else {
-                newWidth = (int) (width * ((double) maxSize / height));
-                newHeight = maxSize;
-            }
-
-            Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+            Image scaledImage = Scalr.resize(ImageIO.read(new URL(icon)), Scalr.Method.ULTRA_QUALITY, 200, Scalr.OP_ANTIALIAS);
             ImageIcon newIcon = new ImageIcon(scaledImage);
-            JFormMain.albumCover.setIcon(newIcon);
-            JFormMain.songName.setText(songName);
-            JFormMain.songArtist.setText(songArtist);
+            roundTheCorners(JFormMain.albumCover, 20, newIcon);
         }
         catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Could not resolve the URL for the album cover, leaving it the same");
         }
     }
+
+    /**
+     * Rounds the corners of a JLabel. Absolutely useless functionally, but it makes it look nice, doesn't it?
+     * @param label the component to be rounded
+     * @param cornerRadius the radius by which the corners should be cut
+     */
+    public static void roundTheCorners(JLabel label, int cornerRadius, ImageIcon icon) {
+        label.setIcon(icon);
+        label.setLayout(new BorderLayout());
+        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        label.setOpaque(false);
+        label.setBackground(new Color(0, 0, 0, 0));
+        label.removeAll();
+        label.add(new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D graphics = (Graphics2D) g.create();
+                graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                int width = getWidth();
+                int height = getHeight();
+                RoundRectangle2D roundedRect = new RoundRectangle2D.Float(0, 0, width - 1, height - 1, cornerRadius, cornerRadius);
+                graphics.setClip(roundedRect);
+                super.paintComponent(graphics);
+                graphics.dispose();
+            }
+        }, BorderLayout.CENTER);
+        label.revalidate();
+        label.repaint();
+    }
+
 
     public static void makeSpotifyAccountRequest() {
         String response = Main.makeRequest(RequestArgs.CREATE_SPOTIFY_ACCOUNT);

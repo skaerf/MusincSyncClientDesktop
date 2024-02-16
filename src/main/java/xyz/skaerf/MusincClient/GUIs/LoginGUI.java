@@ -11,6 +11,7 @@ import java.util.Arrays;
 public class LoginGUI {
 
     private JButton logIn;
+    private JButton createAccount;
     private final BaseGUI base;
 
     private final Action enter = new AbstractAction() {
@@ -75,6 +76,12 @@ public class LoginGUI {
         logIn.setSize(100, 50);
         logIn.setMaximumSize(new Dimension(100, 50));
         panel.add(logIn, c);
+        // CREATE ACCOUNT BUTTON
+        c.gridy = 6;
+        createAccount = new JButton("Create Account");
+        createAccount.setSize(100,50);
+        createAccount.setMaximumSize(new Dimension(100, 50));
+        panel.add(createAccount, c);
         base.getFrame().add(panel, BorderLayout.CENTER);
         // ERROR MESSAGE
         JLabel errorLabel = new JLabel("Username and/or password incorrect!");
@@ -91,12 +98,24 @@ public class LoginGUI {
                     base.closeFrame();
                     System.out.println("Successfully logged in");
                     Main.mainGUI.getMusinc().setVisible(true);
+                    if (Main.autoLinkSpotify(Main.refreshToken)) {
+                        System.out.println("Successfully auto-re-authenticated Spotify");
+                    }
+                    else {
+                        System.out.println("Failed to automatically re-authenticate Spotify");
+                    }
                 }
                 else {
                     errorLabel.setVisible(true);
                     base.getFrame().repaint();
                 }
             }
+        });
+
+        createAccount.addActionListener(e -> {
+            base.closeFrame();
+            CreateAccount createAcc = new CreateAccount();
+            createAcc.getCreateAccount().setVisible(true);
         });
     }
 

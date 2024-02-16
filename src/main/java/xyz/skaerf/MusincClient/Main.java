@@ -26,7 +26,7 @@ public class Main {
     static String email;
 
     static String keepalive;
-    static String refreshToken;
+    public static String refreshToken;
 
     static OutputStream output;
     static PrintWriter writer;
@@ -58,10 +58,11 @@ public class Main {
             refreshToken = (String) configJson.get("refreshToken");
         }
         catch (IOException | ParseException e) {
-            throw new RuntimeException(e);
+            System.out.println("No data exists in data.json, ignoring it");
+            configJson = new JSONObject();
         }
-        hostname = "localhost";
-        port = 1905;
+        hostname = "home.skaerf.xyz";
+        port = 1101;
         loginGUI = new LoginGUI();
         mainGUI = new JFormMain();
 
@@ -75,9 +76,7 @@ public class Main {
                     System.out.println("Spotify refresh token found in configuration file, auto-connecting");
                     if (autoLinkSpotify(refreshToken)) {
                         System.out.println("Successfully re-authenticated using refresh token");
-                        System.out.println("Starting album cover updater thread");
-                        albumArtUpdater = new Thread(new AlbumArtUpdater());
-                        albumArtUpdater.start();
+                        System.out.println("Album cover updater thread started");
                     }
                 }
             }
@@ -121,7 +120,7 @@ public class Main {
         return null;
     }
 
-    public static boolean logInRequest(String username, String pass, boolean isKeepAlive) {
+    private static boolean tryToConnect() {
         if (socket != null && socket.isConnected()) {
             try {
                 socket.close();
@@ -131,7 +130,6 @@ public class Main {
                 System.out.println("Could not close preexisting socket");
             }
         }
-        Main.username = username;
         try {
             socket = new Socket(hostname, port);
         }
@@ -146,7 +144,25 @@ public class Main {
         }
         catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
+    }
+
+    public static boolean createAccount(String username, String email, String firstName, String lastName) {
+        if (!tryToConnect()) return false;
+        wipeContentsOfDataFile();
+        String response = Main.makeRequest(RequestArgs.CREATE_ACCOUNT+username+":!:"+email+":!:"+firstName+":!:"+lastName);
+        if (response != null) {
+            if ((response.split(";")[0]+";").equals(RequestArgs.CREATE_ACCOUNT)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean logInRequest(String username, String pass, boolean isKeepAlive) {
+        if (!tryToConnect()) return false;
         if (isKeepAlive) {
             writer.println(RequestArgs.KEEPALIVE+keepalive+"\n");
         }
@@ -159,12 +175,7 @@ public class Main {
             while ((response = reader.readLine()) != null) {
                 if (response.startsWith(RequestArgs.ACCEPTED)) {
                     String[] vars = response.split(";")[1].split(":!:");
-                    if (username != null) {
-                        Main.username = vars[0];
-                    }
-                    else {
-                        Main.username = vars[0];
-                    }
+                    Main.username = vars[0];
                     firstName = vars[1];
                     lastName = vars[2];
                     email = vars[3];
@@ -193,10 +204,13 @@ public class Main {
     }
 
     public static boolean autoLinkSpotify(String refreshToken) {
+        if (refreshToken == null) return false;
         String response = Main.makeRequest(RequestArgs.REAUTHENTICATE_SPOTIFY_ACCOUNT+refreshToken);
         if (response != null) {
             String arg = response.split(";")[0]+";";
             if (arg.equalsIgnoreCase(RequestArgs.ACCEPTED)) {
+                albumArtUpdater = new Thread(new AlbumArtUpdater());
+                albumArtUpdater.start();
                 return true;
             }
         }

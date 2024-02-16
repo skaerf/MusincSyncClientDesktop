@@ -1,0 +1,92 @@
+JFDML JFormDesigner: "8.2.1.0.348" Java: "17.0.6" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp header:::::x, comp header2::l:::x, seq l {space :p:74:p, par l {seq {par l {seq {space :6:6:p, comp label5:::p::p}, comp lastNameBox::l:p:148:p}, space s:::p, par l {seq {space :0:0:x, comp label6:::p::p, space :0:0:x}, comp passwordBox::l:::x}}, seq {par l {comp label3:::p::p, seq {comp emailBox:::p:182:p, space :p:27:p, comp passwordConfBox:::p:105:p}, seq {par l {comp firstNameBox::l:p:148:p, comp label1::l:p::p}, space s:::p, par l:::p {comp label2:::p::p, comp usernameBox:::p:148:p, comp label4::l:p::p}}}, space :0:0:x}}, space :::p}, seq t {space :::x, comp signUp:::p::p, space :p:192:p}, seq l {space :::p, comp errorMessage::::0:x, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :p:32:p, comp header:::p::p, space :0:0:p, comp header2:::p::p, space :::p, par b {comp label1::b:p::p, comp label2::b:p::p}, space :p:4:p, par b {comp firstNameBox::b:p:30:p, comp usernameBox::b:p::p}, space :::p, par b {comp label3::b:p::p, comp label4::b:p::p}, space :p:2:p, par b {comp lastNameBox::b:p::p, comp passwordBox::b:p::p}, space :::p, par b {comp label5::b:p::p, comp label6::b:p::p}, space :p:2:p, par b {comp passwordConfBox::b:p::p, comp emailBox::b:p::p}, space :p:24:p, comp signUp:::p::p, space s:::p, comp errorMessage:::p::p, space :::p}}"
+		} ) {
+			name: "CreateAccount"
+			"defaultCloseOperation": 3
+			"title": "Create Account"
+			"minimumSize": new java.awt.Dimension( 250, 250 )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "header"
+				"text": "Musinc"
+				"font": new java.awt.Font( "Segoe UI", 1, 24 )
+				"foreground": new java.awt.Color( 255, 51, 51, 255 )
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "header2"
+				"text": "Sign Up"
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "firstNameBox"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "lastNameBox"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "emailBox"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "usernameBox"
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "passwordBox"
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "passwordConfBox"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "signUp"
+				"text": "Sign Up"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "signUpButtonClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "First Name"
+				"labelFor": new FormReference( "firstNameBox" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Username"
+				"labelFor": new FormReference( "usernameBox" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Last Name"
+				"labelFor": new FormReference( "lastNameBox" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Password"
+				"labelFor": new FormReference( "passwordBox" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "Email"
+				"labelFor": new FormReference( "emailBox" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "Confirm Password"
+				"labelFor": new FormReference( "passwordConfBox" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "errorMessage"
+				"text": "Please check that all the boxes have been filled and that your passwords match!"
+				"horizontalAlignment": 0
+				"foreground": new java.awt.Color( 255, 51, 51, 255 )
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 65536, 0, false )
+				"visible": false
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 465, 425 )
+		} )
+	}
+}

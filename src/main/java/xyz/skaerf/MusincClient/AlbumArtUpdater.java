@@ -58,6 +58,10 @@ public class AlbumArtUpdater implements Runnable {
                 artist = data[2];
                 timestamp = Long.parseLong(data[3].split("/")[0]);
                 songLength = Long.parseLong(data[3].split("/")[1]);
+                if (timestamp >= songLength) {
+                    updatePlayerInfoSlowly();
+                    return;
+                }
                 System.out.println(data[0]+"\n"+data[1]+"\n"+data[2]+"\n"+data[3]);
                 JFormMainManager.refreshPlayingInfo(albumCover, songName, artist, timestamp, songLength);
             }
