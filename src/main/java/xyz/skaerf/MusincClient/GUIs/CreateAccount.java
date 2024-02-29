@@ -5,13 +5,11 @@
 package xyz.skaerf.MusincClient.GUIs;
 
 import xyz.skaerf.MusincClient.Main;
-import xyz.skaerf.MusincClient.RequestArgs;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.Arrays;
 import javax.swing.*;
-import javax.swing.GroupLayout;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.util.Arrays;
 
 /**
  * @author lawre
