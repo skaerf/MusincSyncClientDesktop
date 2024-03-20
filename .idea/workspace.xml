@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae3311fb-d44c-4c40-bc4f-d9d51484e385" name="Changes" comment="CreateAccount gui, LoginGUI button for account creation, progress bar updating and various other bits and bobs. my commits to this repository are infrequent and large">
+    <list default="true" id="ae3311fb-d44c-4c40-bc4f-d9d51484e385" name="Changes" comment="import fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/CreateAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/CreateAccount.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,7 +225,8 @@
       <workItem from="1709206535649" duration="74000" />
       <workItem from="1709206627100" duration="294000" />
       <workItem from="1709206937051" duration="186000" />
-      <workItem from="1709207136148" duration="428000" />
+      <workItem from="1709207136148" duration="2020000" />
+      <workItem from="1709303544780" duration="2536000" />
     </task>
     <task id="LOCAL-00001" summary="basic login functionality and opening of main gui">
       <created>1682114988430</created>
@@ -291,7 +291,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708098221075</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="import fix">
+      <option name="closed" value="true" />
+      <created>1709208264825</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1709208264826</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,6 +326,7 @@
     <MESSAGE value="javadocs!" />
     <MESSAGE value="new main gui, half-baked sessions, less awful album cover updating" />
     <MESSAGE value="CreateAccount gui, LoginGUI button for account creation, progress bar updating and various other bits and bobs. my commits to this repository are infrequent and large" />
-    <option name="LAST_COMMIT_MESSAGE" value="CreateAccount gui, LoginGUI button for account creation, progress bar updating and various other bits and bobs. my commits to this repository are infrequent and large" />
+    <MESSAGE value="import fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="import fix" />
   </component>
 </project>
