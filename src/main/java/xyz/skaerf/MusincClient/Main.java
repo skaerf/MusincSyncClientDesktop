@@ -13,7 +13,6 @@ public class Main {
 
     public static File configFile;
     public static JSONObject configJson;
-    static JSONObject loginData;
     public static JFormMain mainGUI;
     public static LoginGUI loginGUI;
     static String hostname;
@@ -32,7 +31,6 @@ public class Main {
     static PrintWriter writer;
     static BufferedReader reader;
 
-    static boolean isLogIn = true;
     public static boolean isLoggedIn = false;
     public static Thread albumArtUpdater;
 
@@ -108,7 +106,11 @@ public class Main {
         writer.println(request);
         try {
             String response = reader.readLine();
-            while (response.equals("")) {
+            if (response == null) {
+                System.out.println("Server appears to either be offline or has killed the connection without telling the client.");
+                return null;
+            }
+            while (response.isEmpty()) {
                 response = reader.readLine();
             }
             return response;
@@ -149,14 +151,21 @@ public class Main {
         return true;
     }
 
-    public static boolean createAccount(String username, String email, String firstName, String lastName) {
+    public static void closeSocket() {
+        try {
+            socket.close();
+        }
+        catch (IOException e) {
+            System.out.println("Failed to close server socket");
+        }
+    }
+
+    public static boolean createAccount(String username, String email, String firstName, String lastName, String hashedPass) {
         if (!tryToConnect()) return false;
         wipeContentsOfDataFile();
-        String response = Main.makeRequest(RequestArgs.CREATE_ACCOUNT+username+":!:"+email+":!:"+firstName+":!:"+lastName);
+        String response = Main.makeRequest(RequestArgs.CREATE_ACCOUNT+username+":!:"+email+":!:"+firstName+":!:"+lastName+":!:"+hashedPass);
         if (response != null) {
-            if ((response.split(";")[0]+";").equals(RequestArgs.CREATE_ACCOUNT)) {
-                return true;
-            }
+            return (response.split(";")[0] + ";").equals(RequestArgs.CREATE_ACCOUNT);
         }
         return false;
     }

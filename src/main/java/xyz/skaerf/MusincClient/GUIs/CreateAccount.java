@@ -5,6 +5,7 @@
 package xyz.skaerf.MusincClient.GUIs;
 
 import xyz.skaerf.MusincClient.Main;
+import xyz.skaerf.MusincClient.PassManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,10 +36,10 @@ public class CreateAccount {
             System.out.println("Passwords do not match");
             return;
         }
-        if (Main.createAccount(username, email, firstName, lastName)) {
+        if (Main.createAccount(username, email, firstName, lastName, PassManager.hashPassword(password))) {
             System.out.println("Successfully created account, logging in with the same details");
             // TODO THIS USES THE TERRIBLE HAT THING. REMOVE IT IMMEDIATELY. ONLY HERE BECAUSE I WAS TOO DUMB TO MAKE THE CORRECT PASS FUNCTION AT THE TIME.
-            Main.logInRequest(username + "^$^", password, false);
+            Main.logInRequest(username, password, false);
             if (Main.isLoggedIn) {
                 System.out.println("Successfully logged in");
                 Main.mainGUI.getMusinc().setVisible(true);

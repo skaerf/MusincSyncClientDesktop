@@ -9,9 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae3311fb-d44c-4c40-bc4f-d9d51484e385" name="Changes" comment="import fix">
+    <list default="true" id="ae3311fb-d44c-4c40-bc4f-d9d51484e385" name="Changes" comment="docs update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/CreateAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/CreateAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/JFormMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/JFormMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/JFormMain.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/JFormMain.jfd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/JFormMainManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/JFormMainManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/ProgressBarUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/ProgressBarUpdater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/RequestArgs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/RequestArgs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,6 +234,10 @@
       <workItem from="1709206937051" duration="186000" />
       <workItem from="1709207136148" duration="2020000" />
       <workItem from="1709303544780" duration="2536000" />
+      <workItem from="1710932952902" duration="663000" />
+      <workItem from="1711117484236" duration="765000" />
+      <workItem from="1713861827280" duration="531000" />
+      <workItem from="1714044705812" duration="3219000" />
     </task>
     <task id="LOCAL-00001" summary="basic login functionality and opening of main gui">
       <created>1682114988430</created>
@@ -299,7 +310,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709208264826</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="docs update">
+      <option name="closed" value="true" />
+      <created>1710933022048</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1710933022048</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,6 +346,7 @@
     <MESSAGE value="new main gui, half-baked sessions, less awful album cover updating" />
     <MESSAGE value="CreateAccount gui, LoginGUI button for account creation, progress bar updating and various other bits and bobs. my commits to this repository are infrequent and large" />
     <MESSAGE value="import fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="import fix" />
+    <MESSAGE value="docs update" />
+    <option name="LAST_COMMIT_MESSAGE" value="docs update" />
   </component>
 </project>

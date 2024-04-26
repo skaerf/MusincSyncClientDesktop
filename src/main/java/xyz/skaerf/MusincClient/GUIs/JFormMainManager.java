@@ -10,7 +10,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
-import java.awt.image.BufferedImage;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -35,7 +34,8 @@ public class JFormMainManager {
         JFormMain.updateProgressBar(timestamp, songLength, false);
         String response = Main.makeRequest(RequestArgs.GET_QUEUE);
         if (response == null || (response.split(";")[0]+";").equalsIgnoreCase(RequestArgs.DENIED)) {
-            System.out.println("Request for queue information returned null, skipping");
+            System.out.println("Request for queue information returned null, clearing displayed queue");
+            JFormMain.updateQueuedSongs(null);
         }
         else {
             String[] songs = response.split(";")[1].split(":!:");

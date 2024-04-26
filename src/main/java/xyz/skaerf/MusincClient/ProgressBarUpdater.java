@@ -32,7 +32,7 @@ public class ProgressBarUpdater implements Runnable {
         while (go) {
             try {
                 if (!paused) {
-                    TimeUnit.MILLISECONDS.sleep(250); // this is doubly as fast as necessary to maintain accuracy
+                    TimeUnit.MILLISECONDS.sleep(100); // this is doubly as fast as necessary to maintain accuracy
                     millisElapsed = millisElapsed + (System.currentTimeMillis() - lastUpdate);
                     if (millisElapsed >= millisTotal) {
                         // runs if the amount of time elapsed of the song is greater than the length of the song

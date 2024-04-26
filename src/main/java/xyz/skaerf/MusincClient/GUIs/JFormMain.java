@@ -62,6 +62,7 @@ public class JFormMain {
 
     private void logOut(ActionEvent e) {
         Main.wipeContentsOfDataFile();
+        Main.closeSocket();
         Main.loginGUI.startFrame();
         Musinc.setVisible(false);
         Musinc.dispose();
@@ -105,6 +106,7 @@ public class JFormMain {
     public static void updateQueuedSongs(ArrayList<ArrayList<String>> songs) {
         DefaultTableModel model = (DefaultTableModel) queuedSongs.getModel();
         model.setRowCount(0);
+        if (songs == null) return;
         int queueNumber = 1;
         for (ArrayList<String> song : songs) {
             model.addRow(new Object[]{String.valueOf(queueNumber), song.get(0), song.get(1)});
@@ -226,6 +228,7 @@ public class JFormMain {
         joinSessionPane = new JDialog();
         sessionCode = new JTextField();
         joinSessionButton = new JButton();
+        warning = new JLabel();
         sessionCreatedDialog = new JDialog();
         created = new JLabel();
         displayCode = new JLabel();
@@ -529,26 +532,34 @@ public class JFormMain {
             joinSessionButton.setText("Join");
             joinSessionButton.addActionListener(e -> joinSessionButtonClicked(e));
 
+            //---- warning ----
+            warning.setText("Please clear your Spotify queue first!");
+            warning.setFont(warning.getFont().deriveFont(warning.getFont().getStyle() & ~Font.BOLD));
+
             GroupLayout joinSessionPaneContentPaneLayout = new GroupLayout(joinSessionPaneContentPane);
             joinSessionPaneContentPane.setLayout(joinSessionPaneContentPaneLayout);
             joinSessionPaneContentPaneLayout.setHorizontalGroup(
                 joinSessionPaneContentPaneLayout.createParallelGroup()
                     .addGroup(joinSessionPaneContentPaneLayout.createSequentialGroup()
-                        .addGap(59, 59, 59)
+                        .addGap(65, 65, 65)
                         .addGroup(joinSessionPaneContentPaneLayout.createParallelGroup()
                             .addComponent(sessionCode, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(joinSessionButton)))
+                            .addComponent(joinSessionButton))
+                        .addGap(61, 65, Short.MAX_VALUE))
+                    .addComponent(warning, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
             );
             joinSessionPaneContentPaneLayout.setVerticalGroup(
                 joinSessionPaneContentPaneLayout.createParallelGroup()
                     .addGroup(joinSessionPaneContentPaneLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
+                        .addGap(9, 9, 9)
+                        .addComponent(warning, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sessionCode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addComponent(joinSessionButton)
                         .addContainerGap())
             );
-            joinSessionPane.setSize(200, 200);
+            joinSessionPane.setSize(210, 200);
             joinSessionPane.setLocationRelativeTo(joinSessionPane.getOwner());
         }
 
@@ -645,6 +656,7 @@ public class JFormMain {
     private JDialog joinSessionPane;
     private JTextField sessionCode;
     private JButton joinSessionButton;
+    private JLabel warning;
     private static JDialog sessionCreatedDialog;
     private JLabel created;
     private JLabel displayCode;

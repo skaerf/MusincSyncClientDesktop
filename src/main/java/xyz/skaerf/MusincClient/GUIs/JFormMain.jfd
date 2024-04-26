@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "8.2.1.0.348" Java: "17.0.6" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.1.0.348" Java: "17.0.10" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -259,8 +259,8 @@ new FormModel {
 			"size": new java.awt.Dimension( 200, 200 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :59:59:p, par l {comp sessionCode:::p:78:p, comp joinSessionButton:::p::p}}}"
-			"$verticalGroup": "par l {seq {space :p:41:p, comp sessionCode:::p::p, space :p:31:p, comp joinSessionButton:::p::p, space :::p}}"
+			"$horizontalGroup": "par l {seq {space :p:65:p, par l {comp sessionCode:::p:78:p, comp joinSessionButton:::p::p}, space :61:65:x}, comp warning::t::208:x}"
+			"$verticalGroup": "par l {seq {space :p:9:p, comp warning:::p:22:p, space :::p, comp sessionCode:::p::p, space :p:31:p, comp joinSessionButton:::p::p, space :::p}}"
 		} ) {
 			name: "joinSessionPane"
 			"title": "Join Session"
@@ -278,9 +278,14 @@ new FormModel {
 				"text": "Join"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "joinSessionButtonClicked", true ) )
 			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "warning"
+				"text": "Please clear your Spotify queue first!"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 65536, 0, false )
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 925, 225 )
-			"size": new java.awt.Dimension( 200, 200 )
+			"size": new java.awt.Dimension( 210, 200 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {seq {space :::p, par l {comp created::::186:x, comp displayCode::::186:x}, space :::p}, seq l {space :p:37:p, comp copyAndClose:::p:124:p, space ::37:x}}"
