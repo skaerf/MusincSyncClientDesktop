@@ -9,15 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae3311fb-d44c-4c40-bc4f-d9d51484e385" name="Changes" comment="docs update">
+    <list default="true" id="ae3311fb-d44c-4c40-bc4f-d9d51484e385" name="Changes" comment="assorted updates">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MusincClient_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MusincClient_main_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MusincClient_main_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/CreateAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/CreateAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/JFormMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/JFormMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/JFormMain.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/JFormMain.jfd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/JFormMainManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/GUIs/JFormMainManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/ProgressBarUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/ProgressBarUpdater.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/RequestArgs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xyz/skaerf/MusincClient/RequestArgs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,30 +73,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build MusincClient.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.MusincClient [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/lawre/IdeaProjects/MusincServer&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build MusincClient.executor": "Run",
+    "Gradle.MusincClient [:Main.main()].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "TODO_SCOPE": "All Places",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/lawre/IdeaProjects/MusincServer",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "editor.preferences.import",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\lawre\IdeaProjects\MusincClient\ico" />
@@ -237,7 +235,7 @@
       <workItem from="1710932952902" duration="663000" />
       <workItem from="1711117484236" duration="765000" />
       <workItem from="1713861827280" duration="531000" />
-      <workItem from="1714044705812" duration="3219000" />
+      <workItem from="1714044705812" duration="5879000" />
     </task>
     <task id="LOCAL-00001" summary="basic login functionality and opening of main gui">
       <created>1682114988430</created>
@@ -318,7 +316,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710933022048</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="assorted updates">
+      <option name="closed" value="true" />
+      <created>1714138605451</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1714138605451</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -347,6 +353,7 @@
     <MESSAGE value="CreateAccount gui, LoginGUI button for account creation, progress bar updating and various other bits and bobs. my commits to this repository are infrequent and large" />
     <MESSAGE value="import fix" />
     <MESSAGE value="docs update" />
-    <option name="LAST_COMMIT_MESSAGE" value="docs update" />
+    <MESSAGE value="assorted updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="assorted updates" />
   </component>
 </project>

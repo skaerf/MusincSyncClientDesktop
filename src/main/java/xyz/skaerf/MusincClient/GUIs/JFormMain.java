@@ -312,14 +312,14 @@ public class JFormMain {
                     ((GridBagLayout)songInfoPanel.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 1.0E-4};
 
                     //---- songArtist ----
-                    songArtist.setText("Artist");
+                    songArtist.setText("Pley something on Spotify!");
                     songArtist.setFont(songArtist.getFont().deriveFont(songArtist.getFont().getStyle() | Font.BOLD));
                     songInfoPanel.add(songArtist, new GridBagConstraints(1, 0, 3, 1, 0.0, 0.0,
                         GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                         new Insets(0, 0, 5, 5), 0, 0));
 
                     //---- songName ----
-                    songName.setText("Title");
+                    songName.setText("Musinc > Manual Refresh");
                     songName.setFont(songName.getFont().deriveFont(songName.getFont().getStyle() & ~Font.BOLD));
                     songName.setAutoscrolls(true);
                     songInfoPanel.add(songName, new GridBagConstraints(1, 1, 3, 1, 0.0, 0.0,

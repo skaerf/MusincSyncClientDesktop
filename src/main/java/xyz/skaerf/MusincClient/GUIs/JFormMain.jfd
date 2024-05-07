@@ -38,7 +38,7 @@ new FormModel {
 					name: "songInfoPanel"
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "songArtist"
-						"text": "Artist"
+						"text": "Pley something on Spotify!"
 						"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
 						auxiliary() {
 							"JavaCodeGenerator.variableModifiers": 9
@@ -50,7 +50,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "songName"
-						"text": "Title"
+						"text": "Musinc > Manual Refresh"
 						"font": new com.jformdesigner.model.SwingDerivedFont( null, 65536, 0, false )
 						"autoscrolls": true
 						auxiliary() {
