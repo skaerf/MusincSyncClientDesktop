@@ -201,6 +201,9 @@ public class JFormMain {
         session = new JMenu();
         newSession = new JMenuItem();
         joinSession = new JMenuItem();
+        playlists = new JMenu();
+        seeAll = new JMenuItem();
+        toggleAutoAdd = new JMenuItem();
         accountMenu = new JMenu();
         spotify = new JMenuItem();
         deezer = new JMenuItem();
@@ -274,6 +277,20 @@ public class JFormMain {
                     joinSession.setText("Join Session..");
                     joinSession.addActionListener(e -> joinSessionClicked(e));
                     session.add(joinSession);
+
+                    //======== playlists ========
+                    {
+                        playlists.setText("Playlists");
+
+                        //---- seeAll ----
+                        seeAll.setText("See All Musinc Playlists");
+                        playlists.add(seeAll);
+
+                        //---- toggleAutoAdd ----
+                        toggleAutoAdd.setText("Turn On Auto-Add");
+                        playlists.add(toggleAutoAdd);
+                    }
+                    session.add(playlists);
                 }
                 menuBar.add(session);
 
@@ -629,6 +646,9 @@ public class JFormMain {
     private JMenu session;
     private JMenuItem newSession;
     private JMenuItem joinSession;
+    private JMenu playlists;
+    private JMenuItem seeAll;
+    private JMenuItem toggleAutoAdd;
     private JMenu accountMenu;
     private JMenuItem spotify;
     private JMenuItem deezer;

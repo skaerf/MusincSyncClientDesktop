@@ -197,6 +197,18 @@ new FormModel {
 						"text": "Join Session.."
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "joinSessionClicked", true ) )
 					} )
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "playlists"
+						"text": "Playlists"
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "seeAll"
+							"text": "See All Musinc Playlists"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "toggleAutoAdd"
+							"text": "Turn On Auto-Add"
+						} )
+					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "accountMenu"
